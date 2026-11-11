@@ -126,6 +126,13 @@ class RecordsTest(unittest.TestCase):
             self.assertEqual(run.returncode, 2)
             self.assertFalse(path.exists())
 
+    def test_domain_boundary(self):
+        first, second = copy.deepcopy(self.records[:2])
+        first.update(residual=-3, maintenance=1)
+        result = describe([first])
+        self.assertEqual(result['absolute_residual_sum'], 3)
+        self.assertEqual(result['maintenance_records'], 1)
+
 
 if __name__ == '__main__':
     unittest.main()

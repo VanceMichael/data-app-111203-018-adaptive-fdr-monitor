@@ -9,10 +9,14 @@
 | `observation_id` | str | 必填 |
 | `machine` | str | 必填 |
 | `line` | str | 必填 |
-| `tick` | int | 允许空值，空值不是零 |
+| `tick` | int | 必填 |
 | `residual` | float | 必填 |
-| `maintenance` | int | 允许空值，空值不是零 |
-| `visible_at` | int | 允许空值，空值不是零 |
-| `family` | str | 允许空值，空值不是零 |
+| `maintenance` | int | 必填 |
+| `visible_at` | int | 必填 |
+| `family` | str | 必填 |
 
 时间字段 day、week、tick、hour、minute、cycle、start_day、reported_day、known_at、visible_at、opened、observed 均以各字段名所述的相对时间单位表示整数；不同字段并不必然代表同一种时间。缺少的登记码与浓度等信息保持为空。示例只表达产品数据结构，不能代替实际调查资料。
+
+## 业务字段语义
+
+residual 为标准化有符号残差，maintenance 为检修事件标志。tick 是测量时间，visible_at 是可见时间，均以小时表示。family 为设备族；line 为产线，检修后参考分布可能变化。
